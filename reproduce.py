@@ -1,6 +1,6 @@
-def nextgen(arr, i, j):
-    if arr[i][j] == False:
-        return False
+def reproduce(arr, i, j):
+    if arr[i][j] == True:
+        return True
     r = len(arr)
     c = len(arr[0])
     count = 0
@@ -11,12 +11,11 @@ def nextgen(arr, i, j):
                 if a >= 0 and a < r and b >= 0 and b < c:
                     neighbours.append([a,b])
 
-    #print(neighbours)
     for indices in neighbours:
         x, y = indices
         if arr[x][y] == True:
             count+=1
-    #print([r,c,count])
-    if count in range(2,4):
+
+    if count == 3:
         return True
     return False
