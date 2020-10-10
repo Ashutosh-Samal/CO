@@ -6,7 +6,6 @@
 
 def input(inp):
     try:
-    import numpy as np
     cells = [] 
 
 
