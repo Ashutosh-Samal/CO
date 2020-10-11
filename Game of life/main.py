@@ -1,4 +1,4 @@
-import inp, nextgen, reproduce, time, sys
+import inp, nextgen, reproduce, time, sys, os
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -8,6 +8,15 @@ if __name__ == "__main__":
     arr, rows, cols = inp.input(filename)
 
     while True:
+        for r in range(rows):
+            for c in range(cols):
+                if arr[r][c] == True:
+                    print('*', end='')
+                else:
+                    print('.', end='')
+            print('')
+        print('')
+
         dead = []
         born = []
         for r in range(rows):
@@ -23,12 +32,5 @@ if __name__ == "__main__":
         for r,c in dead:
             arr[r][c] = False
 
-        for r in range(rows):
-            for c in range(cols):
-                if arr[r][c] == True:
-                    print('*', end='')
-                else:
-                    print('.', end='')
-            print('')
-        print('')
         time.sleep(1)
+        os.system('cls' if os.name == 'nt' else 'clear')
