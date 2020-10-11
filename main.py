@@ -5,14 +5,13 @@ if __name__ == "__main__":
         filename = sys.argv[1]
     else:
         filename = input("Enter filename")
-    arr = inp.input(filename)
-    if len(arr) == 0:
-        exit()
+    arr, rows, cols = inp.input(filename)
+
     while True:
         dead = []
         born = []
-        for r in range(len(arr)):
-            for c in range(len(arr[0])):
+        for r in range(rows):
+            for c in range(cols):
                 if reproduce.reproduce(arr, r, c) != arr[r][c]:
                     born.append([r,c])
                 if nextgen.nextgen(arr, r, c) != arr[r][c]:
@@ -23,8 +22,9 @@ if __name__ == "__main__":
 
         for r,c in dead:
             arr[r][c] = False
-        for r in range(len(arr)):
-            for c in range(len(arr[0])):
+
+        for r in range(rows):
+            for c in range(cols):
                 if arr[r][c] == True:
                     print('*', end='')
                 else:
