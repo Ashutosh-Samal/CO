@@ -6,13 +6,26 @@ if __name__ == "__main__":
     else:
         filename = input("Enter filename")
     arr = inp.input(filename)
+    if len(arr) == 0:
+        exit()
     while True:
-        temp = arr
+        dead = []
+        born = []
         for r in range(len(arr)):
             for c in range(len(arr[0])):
-                temp[r][c] = reproduce.reproduce(arr, r, c)
-                temp[r][c] = nextgen.nextgen(arr, r, c)
-                if temp[r][c] == True:
+                if reproduce.reproduce(arr, r, c) != arr[r][c]:
+                    born.append([r,c])
+                if nextgen.nextgen(arr, r, c) != arr[r][c]:
+                    dead.append([r,c])
+
+        for r,c in born:
+            arr[r][c] = True
+
+        for r,c in dead:
+            arr[r][c] = False
+        for r in range(len(arr)):
+            for c in range(len(arr[0])):
+                if arr[r][c] == True:
                     print('*', end='')
                 else:
                     print('.', end='')
